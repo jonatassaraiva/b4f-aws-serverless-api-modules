@@ -1,4 +1,3 @@
-
 'use strict';
 
 const { helpers } = require('b4f-common');

@@ -18,6 +18,12 @@ module.exports = (req, context) => {
           case 'highlights':
             contentesPromises.push(contentsTheMovieDB.highlights(itemModule.settings.limitOfContentsByType));
             break;
+          case 'theaters':
+            contentesPromises.push(contentsTheMovieDB.theaters());
+            break;
+          case 'trending-week-tvshows':
+            contentesPromises.push(contentsTheMovieDB.trendings.weekTvShows());
+            break;
           default:
             break;
         }

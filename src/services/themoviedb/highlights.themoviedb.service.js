@@ -8,6 +8,7 @@
  */
 
 const { helpers } = require('b4f-common');
+const builderItemContent = require('./builder.item.content');
 
 const getPopularMovies = (safe = true) => {
   const options = {
@@ -15,13 +16,13 @@ const getPopularMovies = (safe = true) => {
     method: 'GET'
   };
 
-  return helpers.request.send(options, 'popular-movies_themoviedb-serice')
+  return helpers.request.send(options, 'popular-movies_themoviedb')
     .then(data => {
       // TODO: Validate Errors
       return data.body;
     })
     .catch(err => {
-      if (safe) {
+      if (!safe) {
         throw err;
       }
 
@@ -36,12 +37,12 @@ const getPopularTvShows = (safe = true) => {
     method: 'GET'
   };
 
-  return helpers.request.send(options, 'popular-tvshows_themoviedb-serice')
+  return helpers.request.send(options, 'popular-tvshows_themoviedb')
     .then(data => {
       // TODO: Validate Errors
       return data.body;
     }).catch(err => {
-      if (safe) {
+      if (!safe) {
         throw err;
       }
 
@@ -50,19 +51,7 @@ const getPopularTvShows = (safe = true) => {
     });
 };
 
-const builderContent = (content, type) => {
-  return {
-    id: content.id,
-    title: content.title || content.name,
-    voteAverage: content.vote_average * 10,
-    releaseDate: (content.release_date || content.first_air_date).substr(0, 4),
-    type,
-    images: {
-      poster: `https://image.tmdb.org/t/p/w185/${content.poster_path}`,
-      banner: `https://image.tmdb.org/t/p/w342/${content.backdrop_path}`
-    }
-  };
-}
+
 
 module.exports = (limitOfContentsByType) => {
   return Promise.all([
@@ -76,12 +65,12 @@ module.exports = (limitOfContentsByType) => {
       for (let index = 0; index < limitOfContentsByType; index++) {
         const contentMovie = contentsMovies.results[index];
         if (contentMovie) {
-          contents.push(builderContent(contentMovie, 'itemMovie'));
+          contents.push(builderItemContent.itemMovie(contentMovie));
         }
 
         const contentTvShow = contentsTvShows.results[index];
         if (contentTvShow) {
-          contents.push(builderContent(contentTvShow, 'itemTvShow'));
+          contents.push(builderItemContent.itemTvShow(contentTvShow));
         }
       }
       return { moduleId: 'highlights', contents };

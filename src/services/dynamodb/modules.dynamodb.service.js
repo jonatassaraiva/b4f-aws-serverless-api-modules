@@ -1,16 +1,15 @@
 'use strict';
 
 const AWS = require("aws-sdk");
-const { logger } = require('b4f-common');
-
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
-const create = (device, settings) => {
+const create = (deviceId, moduleId, settings) => {
   const params = {
-    TableName: "B4F_MODULES",
+    TableName: 'B4F_MODULES',
     Item: {
-      "device": device,
-      "settings": settings
+      'deviceId': deviceId,
+      'moduleId': moduleId,
+      'settings': settings
     }
   };
 
@@ -20,15 +19,18 @@ const create = (device, settings) => {
         return reject(err);
       }
 
-      return resolve({device, settings});
+      return resolve({deviceId, moduleId, settings});
     });
   });
 }
 
-const update = (device, settings) => {
+const update = (deviceId, moduleId, settings) => {
   const params = {
     TableName: "B4F_MODULES",
-    Key: device,
+    Key: {
+      'deviceId': deviceId,
+      'moduleId': moduleId,
+    },
     UpdateExpression: 'set settings = :s',
     ExpressionAttributeValues: {
       ':s': settings
@@ -47,10 +49,13 @@ const update = (device, settings) => {
   });
 }
 
-const remove = (device, settings) => {
+const remove = (deviceId, moduleId) => {
   const params = {
     TableName: "B4F_MODULES",
-    Key: device
+    Key: {
+      deviceId,
+      moduleId
+    }
   };
 
   return new Promise((resolve, reject) => {
@@ -64,19 +69,22 @@ const remove = (device, settings) => {
   });
 }
 
-const get = (device, settings) => {
+const get = (deviceId) => {
   const params = {
-    TableName: "B4F_MODULES",
-    Key: device
+    TableName: 'B4F_MODULES',
+    KeyConditionExpression: 'deviceId = :m',
+    ExpressionAttributeValues: {
+      ':m': deviceId
+    }
   };
 
   return new Promise((resolve, reject) => {
-    documentClient.get(params, function (err, data) {
+    documentClient.query(params, (err, data) => {
       if (err) {
         return reject(err);
       }
 
-      return resolve(data);
+      return resolve(data.Items);
     });
   });
 }

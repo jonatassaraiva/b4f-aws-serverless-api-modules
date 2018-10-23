@@ -1,7 +1,8 @@
+
 'use strict';
 
 const { helpers } = require('b4f-common');
-const dynamodb = require('./services/create.dynamodb.service');
+const dynamodb = require('../services/dynamodb/modules.dynamodb.service');
 
 module.exports = (req, context) => {
   const { moduleId, deviceId, settings } = JSON.parse(req.body);

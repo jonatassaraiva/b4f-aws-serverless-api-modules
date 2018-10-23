@@ -7,7 +7,7 @@ const createModules = async (event, context) => {
   return functionCreateModules(event, context);
 };
 
-const functionModulesByDevice = require('./functions/modules.get.function');
+const functionModulesByDevice = require('./functions/modules.getByDeviceId.function');
 const getModulesByDeviceId = async (event, context) => {
   return functionModulesByDevice(event, context);
 };

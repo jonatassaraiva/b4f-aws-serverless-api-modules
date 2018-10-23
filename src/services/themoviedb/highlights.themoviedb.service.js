@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * This service get a list of the current popular Movies and TV Shows on TMDb.
+ * This service get a list of the current popular Movies and TV Shows on TMDB.
  * APIs:
  *   https://developers.themoviedb.org/3/movies/get-popular-movies
  *   https://developers.themoviedb.org/3/tv/get-popular-tv-shows

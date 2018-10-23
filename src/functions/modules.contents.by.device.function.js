@@ -7,9 +7,12 @@ const contentsTheMovieDB = require('../services/themoviedb');
 module.exports = (req, context) => {
   const { deviceId } = req.pathParameters;
 
+  // 1 - Load Modules by Device
   return modulesDynamoDB.getByDeviceId(deviceId)
     .then(modules => {
       const contentesPromises = [];
+
+      // 2 - For each modules, get the contents
       modules.forEach(itemModule => {
         switch (itemModule.moduleId) {
           case 'highlights':
@@ -28,11 +31,12 @@ module.exports = (req, context) => {
     .then(result => {
       const modules = result[0];
       const contents = result.slice(1, result.length);
+
+      // 3 - Build the response. Modules with  the contents
       const modulesContnt = modules.map((itemModule, index) => {
         itemModule.contents = contents[index].contents
         return itemModule;
       });
-
       return helpers.response.success(modulesContnt, context);
     })
     .catch(err => {

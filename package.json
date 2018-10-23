@@ -1,0 +1,31 @@
+{
+  "name": "b4f-aws-serverless-api-modules",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonatassaraiva/b4f-aws-serverless-api-modules.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonatassaraiva/b4f-aws-serverless-api-modules/issues"
+  },
+  "homepage": "https://github.com/jonatassaraiva/b4f-aws-serverless-api-modules#readme",
+  "dependencies": {
+    "b4f-common": "file:../b4f-aws-serverless-code-common",
+    "middy": "^0.19.1"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.335.0",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "serverless": "^1.32.0",
+    "serverless-offline": "^3.27.0",
+    "serverless-plugin-tracing": "^2.0.0"
+  }
+}

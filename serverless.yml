@@ -55,7 +55,8 @@ functions:
       THEMOVIEDB_POPULAR_MOVIES: https://api.themoviedb.org/3/movie/popular?api_key=8f44d5dacd63686eab005505b1ec91d7&language=pt-BR
       THEMOVIEDB_POPULAR_TVSHOWS: https://api.themoviedb.org/3/tv/popular?api_key=8f44d5dacd63686eab005505b1ec91d7&language=pt-BR
       THEMOVIEDB_THATRES_MOVIES: https://api.themoviedb.org/3/movie/now_playing?api_key=8f44d5dacd63686eab005505b1ec91d7&language=pt-BR&region=BR
-      
+      THEMOVIEDB_TRENDING_WEEK_TVSHOWS: https://api.themoviedb.org/3/trending/tv/week?api_key=8f44d5dacd63686eab005505b1ec91d7&language=pt-BR
+
   createModules:
     name: ${self:service}_createModule_${self:provider.stage}
     handler: src/handler.createModules

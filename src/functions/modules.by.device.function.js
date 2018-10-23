@@ -1,17 +1,13 @@
 'use strict';
 
 const { helpers } = require('b4f-common');
-const dynamodb = require('../services/dynamodb/modules.dynamodb.service');
+const modulesDynamoDB = require('../services/dynamodb/modules.dynamodb.service');
 
 module.exports = (req, context) => {
   const { deviceId } = req.pathParameters;
 
-  return dynamodb.get(deviceId)
+  return modulesDynamoDB.getByDeviceId(deviceId)
     .then(data => {
-      if (data.length === 0) {
-        return helpers.response.error({ httpStatusCode: 404, message: 'Device not found' }, context);
-      }
-
       return helpers.response.success(data, context);
     })
     .catch(err => {

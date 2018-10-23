@@ -13,7 +13,8 @@
       "args": [
         "offline",
         "start",
-        "--port=3002"
+        "--port=3002",
+        "--dontPrintOutput"
       ],
       "runtimeExecutable": "node",
       "runtimeVersion": "8.10.0"

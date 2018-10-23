@@ -39,6 +39,19 @@ functions:
           cors: true
           private: true
 
+  getModulesContentsByDevice:
+    name: ${self:service}_getModulesContentsByDevice_${self:provider.stage}
+    handler: src/handler.getModulesContentsByDevice
+    description: Function to get contents of modules by device
+    timeout: 30
+    memorySize: 512
+    events:
+      - http:
+          path: modules/{deviceId}/contents
+          method: GET
+          cors: true
+          private: true
+
   createModules:
     name: ${self:service}_createModule_${self:provider.stage}
     handler: src/handler.createModules

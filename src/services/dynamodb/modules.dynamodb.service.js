@@ -19,7 +19,7 @@ const create = (deviceId, moduleId, settings) => {
         return reject(err);
       }
 
-      return resolve({deviceId, moduleId, settings});
+      return resolve({ deviceId, moduleId, settings });
     });
   });
 }
@@ -69,7 +69,7 @@ const remove = (deviceId, moduleId) => {
   });
 }
 
-const get = (deviceId) => {
+const getByDeviceId = (deviceId) => {
   const params = {
     TableName: 'B4F_MODULES',
     KeyConditionExpression: 'deviceId = :m',
@@ -82,6 +82,10 @@ const get = (deviceId) => {
     documentClient.query(params, (err, data) => {
       if (err) {
         return reject(err);
+      }
+
+      if (data.Items.length === 0) {
+        return reject({ httpStatusCode: 404, message: 'Device note found'});
       }
 
       return resolve(data.Items);
@@ -109,6 +113,6 @@ module.exports = {
   create,
   update,
   remove,
-  get,
+  getByDeviceId,
   getAll
 };

@@ -16,8 +16,7 @@
   },
   "homepage": "https://github.com/jonatassaraiva/b4f-aws-serverless-api-modules#readme",
   "dependencies": {
-    "b4f-common": "file:../b4f-aws-serverless-code-common",
-    "middy": "^0.19.1"
+    "b4f-common": "file:../b4f-aws-serverless-code-common"
   },
   "devDependencies": {
     "aws-sdk": "^2.335.0",

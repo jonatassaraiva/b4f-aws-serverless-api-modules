@@ -85,7 +85,7 @@ const getByDeviceId = (deviceId) => {
       }
 
       if (data.Items.length === 0) {
-        return reject({ httpStatusCode: 404, message: 'Device note found'});
+        return reject({ httpStatusCode: 404, message: 'Device not found'});
       }
 
       return resolve(data.Items);

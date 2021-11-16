@@ -19,7 +19,7 @@
     "b4f-common": "file:../b4f-aws-serverless-code-common"
   },
   "devDependencies": {
-    "aws-sdk": "^2.335.0",
+    "aws-sdk": "^2.814.0",
     "eslint": "^5.6.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
